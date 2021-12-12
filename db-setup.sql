@@ -89,7 +89,8 @@ CREATE TABLE IF NOT EXISTS `DEALER_LOGIN`(
     `D_Email` varchar(50),
     `Password` varchar(50) NOT NULL,
     `vkey` int(6) NOT NULL,
-    `verified` int(2) NOt NULL DEFAULT 0
+    `verified` int(2) NOt NULL DEFAULT 0,
+    `lastloggedintime` time
 );
 
 CREATE TABLE IF NOT EXISTS `CUSTOMER`(
@@ -107,5 +108,6 @@ CREATE TABLE IF NOT EXISTS `CUSTOMER_LOGIN` (
     `C_Email` varchar(50) NOT NULL,
     `Password` varchar(50) NOT NULL,
     `vkey` int(6) NOT NULL,
-    `verified` int(2) NOt NULL DEFAULT 0
+    `verified` int(2) NOt NULL DEFAULT 0,
+    `lastloggedintime` time
 );
