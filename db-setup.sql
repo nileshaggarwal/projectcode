@@ -16,28 +16,6 @@ CREATE TABLE IF NOT EXISTS `users` (
  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `car`(
-    `vehicle_id` int(11) NOT NULL AUTO_INCREMENT,
-    `engine` varchar(50) NOT NULL,
-    `mileage` int(4) NOT NULL,
-    `brand` varchar(20) NOT NULL,
-    `manufacturer` varchar(20) NOT NULL,
-    `transmission` varchar(20) NOT NULL,
-    `color` varchar(20) NOT NULL,
-    `model` int(4) NOT NULL,
-    `type` varchar(15) NOT NULL,
-    `yearto_invent` int(4) NOT NULL,
-    `price` int(10) NOT NULL,
-    `make` varchar(20) NOT NULL,
-    `img_url` varchar(150) NOT NULL,
-    `stock` int(2) DEFAULT 1,
-    `dealer` int,
-    FOREIGN KEY (`dealer`) REFERENCES `dealers`(`dealer_id`),
-    PRIMARY KEY(`vehicle_id`) 
-);
-
-
-
 CREATE TABLE IF NOT EXISTS `accessories`(
     `name` varchar(50) NOT NULL,
     `product_id` int(11),
@@ -110,4 +88,53 @@ CREATE TABLE IF NOT EXISTS `CUSTOMER_LOGIN` (
     `vkey` int(6) NOT NULL,
     `verified` int(2) NOt NULL DEFAULT 0,
     `lastloggedintime` time
+);
+
+CREATE TABLE IF NOT EXISTS `manufacturer`(
+    `mname` varchar(20) NOT NULL,
+    `manufacturerid` int(3) AUTO_INCREMENT,
+    `location` varchar(20) NOT NULL,
+    PRIMARY KEY(`manufacturerid`)
+);
+
+CREATE TABLE IF NOT EXISTS `car`(
+    `name` varchar(30) NOT NULL,
+    `carid` int(4) AUTO_INCREMENT,
+    `cartype` varchar(10),
+    `mileage` varchar(3) NOT NULL,
+    `color` varchar(20) NOT NULL,
+    `status` varchar(20) NOT NULL,
+    `fueltype` varchar(20) NOT NULL,
+    `manufacturedate` varchar(10) NOT NULL,
+    `manufacturerid` int,
+    PRIMARY KEY(`carid`),
+    FOREIGN KEY(`manufacturerid`) REFERENCES `manufacturer`(`manufaturerid`) 
+);
+
+CREATE TABLE IF NOT EXISTS `owns`(
+    `carid` int,
+    `dealerid` int,
+    FOREIGN KEY(`carid`) REFERENCES `car`(`carid`),
+    FOREIGN KEY(`dealerid`) REFERENCES `dealer`(`dealerid`)
+);
+
+CREATE TABLE IF NOT EXISTS `newcar`(
+    `newcarid` int,
+    `price` int(10),
+    FOREIGN KEY(`newcarid`) REFERENCES `car`(`carid`)
+);
+
+CREATE TABLE IF NOT EXISTS `features`(
+    `car_id` int,
+    `featuresarr0` varchar(20),
+    `featuresarr1` varchar(20),
+    `featuresarr2` varchar(20),
+    `featuresarr3` varchar(20),
+    FOREIGN KEY(`car_id`) REFERENCES `car`(`carid`)
+);
+
+CREATE TABLE IF NOT EXISTS `images`(
+    `carid` int,
+    `images` varchar(30),
+    FOREIGN KEY(`carid`) REFERENCES `car`(`carid`)
 );

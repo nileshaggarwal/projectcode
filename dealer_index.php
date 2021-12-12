@@ -24,13 +24,13 @@ $res = mysqli_fetch_assoc($exec);
 $soldoutcount = $res["soldoutcount"]; //no of cars sold out
 
 
-//third query to get whether any cars have been rented
-$statusquery2 = "select count(status) as rentedcount from car inner join rent inner join owns where rentalcarid=car.carid and 
-car.carid=owns.carid and enddate is null and dealerid = $dealerid and status='rented'";
-$exec2 = mysqli_query($con,$statusquery2);
-$res2 = mysqli_fetch_assoc($exec2);
+// //third query to get whether any cars have been rented
+// $statusquery2 = "select count(status) as rentedcount from car inner join rent inner join owns where rentalcarid=car.carid and 
+// car.carid=owns.carid and enddate is null and dealerid = $dealerid and status='rented'";
+// $exec2 = mysqli_query($con,$statusquery2);
+// $res2 = mysqli_fetch_assoc($exec2);
 
-$rentedcount = $res2["rentedcount"]; //no of cars sold out
+// $rentedcount = $res2["rentedcount"]; //no of cars sold out
 
 
 ?>
@@ -377,21 +377,21 @@ if ( window.history.replaceState ) {
         <div class="row">
             <div class="column">
             <a href="new_form.php" id="entry">
-            <img src="car2.jpg" style="width:100%;height: 85%;margin-bottom:5px">
+            <img src="./images/car2.jpg" style="width:100%;height: 85%;margin-bottom:5px">
             <h4 style="font-weight:300;color:black">New Car</h4>
             </a>
           </div>
 
           <div class="column">
             <a href="resale_form.php" id="entry">
-            <img src="car1.jpg" style="width:100%;height: 85%;margin-bottom:5px">
+            <img src="./images/car1.jpg" style="width:100%;height: 85%;margin-bottom:5px">
             <h4 style="font-weight:300;color:black">Pre-owned Car</h4>
             </a>
           </div>
           
           <div class="column">
             <a href="rental_form.php" id="entry">
-            <img src="car3.jpg" style="width:100%;height: 85%;margin-bottom:5px">
+            <img src="./images/car3.jpg" style="width:100%;height: 85%;margin-bottom:5px">
             <h4 style="font-weight:300;color:black">Rental Car</h4>
             </a>
           </div>
