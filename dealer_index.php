@@ -359,7 +359,7 @@ if ( window.history.replaceState ) {
 </a>
 
 
-<img src="logow.png" height="50px" style="margin:auto">
+<img src="./images/logow.png" height="50px" style="margin:auto">
 
 </div>
 
