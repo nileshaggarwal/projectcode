@@ -126,10 +126,7 @@ CREATE TABLE IF NOT EXISTS `newcar`(
 
 CREATE TABLE IF NOT EXISTS `features`(
     `car_id` int,
-    `featuresarr0` varchar(20),
-    `featuresarr1` varchar(20),
-    `featuresarr2` varchar(20),
-    `featuresarr3` varchar(20),
+    `features` varchar(20),
     FOREIGN KEY(`car_id`) REFERENCES `car`(`carid`)
 );
 

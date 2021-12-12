@@ -40,7 +40,7 @@ $fueltype = mysqli_real_escape_string($con, $_POST["fueltype"]);
 
 //echo $name." ".$color." ".$mileage." ".$m_date." ".$fueltype." ".$price." ".$m_id;
 
-mysqli_stmt_bind_param($stmt, "ssssss", $name,  $mileage, $color, $fueltype, $m_date, $m_id);
+mysqli_stmt_bind_param($stmt, "sssssi", $name,  $mileage, $color, $fueltype, $m_date, $m_id);
 
     if(mysqli_stmt_execute($stmt))
     {
