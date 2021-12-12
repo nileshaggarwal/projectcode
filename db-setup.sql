@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `car`(
     `fueltype` varchar(20) NOT NULL,
     `manufacturedate` varchar(10) NOT NULL,
     `manufacturerid` int,
+    `uploadedtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(`carid`),
     FOREIGN KEY(`manufacturerid`) REFERENCES `manufacturer`(`manufaturerid`) 
 );
