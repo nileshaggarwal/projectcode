@@ -122,6 +122,7 @@ CREATE TABLE IF NOT EXISTS `owns`(
 CREATE TABLE IF NOT EXISTS `newcar`(
     `newcarid` int,
     `price` int(10),
+    `discount` varchar(4),
     FOREIGN KEY(`newcarid`) REFERENCES `car`(`carid`)
 );
 
