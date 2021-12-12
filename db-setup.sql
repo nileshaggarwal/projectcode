@@ -4,9 +4,10 @@ use LoginSystem;
 
 CREATE TABLE IF NOT EXISTS `users` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
- `username` varchar(50) NOT NULL,
+ `name` varchar(50) NOT NULL,
  `email` varchar(50) NOT NULL,
  `password` varchar(50) NOT NULL,
+ `phone` int(10) NOT NULL,
  `create_datetime` datetime NOT NULL,
  `otp` int(6) NOT NULL,
  `status` varchar(10) NOT NULL,
@@ -30,18 +31,12 @@ CREATE TABLE IF NOT EXISTS `car`(
     `make` varchar(20) NOT NULL,
     `img_url` varchar(150) NOT NULL,
     `stock` int(2) DEFAULT 1,
+    `dealer` int,
+    FOREIGN KEY (`dealer`) REFERENCES `dealers`(`dealer_id`),
     PRIMARY KEY(`vehicle_id`) 
 );
 
-CREATE TABLE IF NOT EXISTS `customer`(
-    `email` varchar(50) NOT NULL,
-    `firstname` varchar(30) NOT NULL,
-    `lastname` varchar(30) NOT NULL,
-    `username` varchar(20) NOT NULL,
-    `dob` DATE,
-    `userid` int,
-    FOREIGN KEY (`userid`) REFERENCES `users`(`id`)
-);
+
 
 CREATE TABLE IF NOT EXISTS `accessories`(
     `name` varchar(50) NOT NULL,
@@ -74,13 +69,43 @@ CREATE TABLE IF NOT EXISTS `purchaseinfor`(
     FOREIGN KEY (`purchase_id`) REFERENCES `purchases`(`purchase_id`)
 );
 
-CREATE TABLE IF NOT EXISTS `dealers`(
-    `email` varchar(50) NOT NULL,
-    `firstname` varchar(30) NOT NULL,
-    `lastname` varchar(30) NOT NULL,
-    `username` varchar(20) NOT NULL,
-    `dob` DATE,
-    `dealer_id` int,
-    FOREIGN KEY (`dealer_id`) REFERENCES `users`(`id`)
+CREATE TABLE IF NOT EXISTS `DEALER`(
+    `dealerID` int(4)  NOT NULL AUTO_INCREMENT,
+    `DName` varchar(50) NOT NULL,
+    `PhoneNo` varchar(10) NOT NULL,
+    `Website` varchar(50) ,
+    `D_Email` varchar(50) NOT NULL,
+    PRIMARY KEY(`dealerID`)
 );
 
+CREATE TABLE IF NOT EXISTS `branch`(
+    `dealerID` int(4),
+    `branch` varchar(100),
+    `location` varchar(100),
+    FOREIGN KEY(`dealerID`) REFERENCES `DEALER`(`dealerID`)
+);
+
+CREATE TABLE IF NOT EXISTS `DEALER_LOGIN`(
+    `D_Email` varchar(50),
+    `Password` varchar(50) NOT NULL,
+    `vkey` int(6) NOT NULL,
+    `verified` int(2) NOt NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS `CUSTOMER`(
+    `customerID` int(4)  NOT NULL AUTO_INCREMENT,
+    `CustomerName` varchar(50) NOT NULL,
+    `DOB` varchar(15),
+    `PhoneNo` varchar(10) NOT NULL,
+    `Address` varchar(100) NOT NULL,
+    `DrivingLicense` varchar(20) NOT NULL,
+    `C_Email` varchar(50) NOT NULL,
+    PRIMARY KEY(`customerID`)
+);
+
+CREATE TABLE IF NOT EXISTS `CUSTOMER_LOGIN` (
+    `C_Email` varchar(50) NOT NULL,
+    `Password` varchar(50) NOT NULL,
+    `vkey` int(6) NOT NULL,
+    `verified` int(2) NOt NULL DEFAULT 0
+);

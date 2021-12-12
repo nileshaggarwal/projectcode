@@ -1,0 +1,72 @@
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.1rem;
+}
+
+body {
+  background-image: url("./images/mclaren.jpg");
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.container {
+  border-radius: 5px;
+  height: fit-content;
+  width: 35%;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.main-logo {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  color: white;
+}
+#logo {
+  background-color: transparent;
+  width: 115px;
+  border-radius: 50%;
+}
+.main-header {
+  color: #333;
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: none;
+  color: white;
+  padding: 10px;
+}
+.main {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.btn-primary {
+  width: 100%;
+}
+@media only screen and (max-width: 800px) {
+  .container {
+    min-width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    width: 50%;
+  }
+}

@@ -2,10 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Login</title>
+        <title>Account Verification-VroomLife</title>
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
+        
+        
         <?php 
         require('db.php');
         if(isset($_REQUEST['otp']))  {
@@ -13,11 +15,11 @@
             $otp=mysqli_real_escape_string($con,$otp);
             $email=stripslashes($_GET['user']);
             $email=mysqli_real_escape_string($con,$email);
-            $query="SELECT * FROM `users` WHERE email='$email' AND otp='$otp'";
+            $query="SELECT * FROM `dealer_login` WHERE D_Email='$email' AND vkey='$otp'";
             $result   = mysqli_query($con, $query) or die(mysql_error());
             $rows=mysqli_num_rows($result);
             if($rows==1){
-                $change="UPDATE `users` SET status='active' WHERE email='$email'";
+                $change="UPDATE `dealer_login` SET verified=1 WHERE D_Email='$email'";
                 $res=mysqli_query($con,$change);
                 if($res){
                     header("Location:login.php");
