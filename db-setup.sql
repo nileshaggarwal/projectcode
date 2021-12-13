@@ -108,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `car`(
     `manufacturedate` varchar(10) NOT NULL,
     `manufacturerid` int,
     `uploadedtime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `licenseplateno` varchar(15),
     PRIMARY KEY(`carid`),
     FOREIGN KEY(`manufacturerid`) REFERENCES `manufacturer`(`manufaturerid`) 
 );
@@ -136,4 +137,12 @@ CREATE TABLE IF NOT EXISTS `images`(
     `carid` int,
     `images` varchar(30),
     FOREIGN KEY(`carid`) REFERENCES `car`(`carid`)
+);
+
+CREATE TABLE IF NOT EXISTS `preownedcar`(
+    `preownedcarid` int,
+    `kmdriven` int(7),
+    `resaleprice` int(15) NOT NULL,
+    `discount` varchar(4),
+    FOREIGN KEY(`preownedcarid`) REFERENCES `car`(`carid`)
 );
