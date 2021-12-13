@@ -124,6 +124,10 @@ CREATE TABLE IF NOT EXISTS `newcar`(
     `newcarid` int,
     `price` int(10),
     `discount` varchar(4),
+    `customerid` int(4),
+    `paymentstatus` varchar(15),
+    `paymentdate` datetime,
+    `paymentstatuschangetime` datetime,
     FOREIGN KEY(`newcarid`) REFERENCES `car`(`carid`)
 );
 
@@ -144,5 +148,9 @@ CREATE TABLE IF NOT EXISTS `preownedcar`(
     `kmdriven` int(7),
     `resaleprice` int(15) NOT NULL,
     `discount` varchar(4),
+    `customerid` int(4),
+    `paymentstatus` varchar(15),
+    `paymentdate` datetime,
+    `paymentstatuschangetime` datetime,
     FOREIGN KEY(`preownedcarid`) REFERENCES `car`(`carid`)
 );

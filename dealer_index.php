@@ -117,7 +117,7 @@ form.example::after {
 }
 
 .modal-contents {
-    height: 350px;
+    height: 400px;
     width: 800px;
     padding: 50px;
     background-color:white;
@@ -126,7 +126,10 @@ form.example::after {
     border-radius: 4px;
 }
 
-
+.card{
+  width: 800px !important;
+  margin:10px 0;
+}
 
 .close {
     position: absolute;
@@ -163,7 +166,7 @@ form.example::after {
 
 .column {
   float: left;
-  width: 33.33%;
+  width: 50%;
   padding: 5px;
 }
 
@@ -276,6 +279,7 @@ form.example::after {
 
     .card
     {
+
       padding-bottom:15px;
     }
 
@@ -337,7 +341,7 @@ if ( window.history.replaceState ) {
 <a id="active">Home</a>
 <a href="dealer_profile.php">Profile</a>
 <a href="dealer_sold.php">Cars Sold</a>
-<a href="dealer_rented.php">Cars Rented</a>
+<!-- <a href="dealer_rented.php">Cars Rented</a> -->
 
 
 </div>
@@ -389,12 +393,12 @@ if ( window.history.replaceState ) {
             </a>
           </div>
           
-          <div class="column">
+          <!-- <div class="column">
             <a href="rental_form.php" id="entry">
             <img src="./images/car3.jpg" style="width:100%;height: 85%;margin-bottom:5px">
             <h4 style="font-weight:300;color:black">Rental Car</h4>
             </a>
-          </div>
+          </div> -->
 
         </div>
 
@@ -576,7 +580,7 @@ No cars have been added yet! Add a car by clicking on the <i>Add entry</i> butto
 
 
 
-  <div style="float: left;" class="card">
+  <div style="float: left;" class="card" >
     <div class="row ">
     
     <div class="col-md-5">
