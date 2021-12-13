@@ -2,17 +2,17 @@
 
 session_start();
 
-// if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) //user not logged in or user logged in is a dealer
-// {
-//     header('location:index.php');
-// }
+if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) //user not logged in or user logged in is a dealer
+{
+    header('location:index.php');
+}
 
-require('db.php');
+include('db.php');
 
-$cusid = $_SESSION['userid']; //getting the customer id
-$cusname = $_SESSION['username'];
-$query = "SELECT * FROM customer WHERE customerid = $cusid";
-$result = mysqli_query($conn, $query);
+$cusid = $_SESSION["userid"]; //getting the customer id
+// $cusname = $_SESSION['CustomerName'];
+$query = "SELECT * FROM customer WHERE customerID = $cusid ";
+$result = mysqli_query($con, $query);
 $row = mysqli_fetch_assoc($result);
 ?>
 
@@ -21,7 +21,7 @@ $row = mysqli_fetch_assoc($result);
 
 
 <head>
-  <title><?php echo $cusname."'s " ?> Profile - Rustom</title>
+  <title><?php echo $row['CustomerName']  ?> Profile - Rustom</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="icon.ico">
@@ -254,7 +254,7 @@ if ( window.history.replaceState ) {
                         <Br>
                         <div class="col-xs-6">
                             <label for="name"><h4>Name</h4></label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $cusname ?>" title="enter your name">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $row['CustomerName'] ?>" title="enter your name">
                         </div>
                     </div>
 

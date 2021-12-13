@@ -261,7 +261,7 @@ $result3 = mysqli_query($con,$query3);
 <a href="cus_index.php">Home</a>
 <a href="cus_profile.php">Profile</a>
 <a href="cus_purchased.php">My Purchases</a>
-<a href="cus_rented.php">Rented cars</a>
+
 
 
 <?php }
@@ -271,7 +271,7 @@ else{
 <a href="dealer_index.php">Home</a>
 <a href="dealer_profile.php">Profile</a>
 <a href="dealer_sold.php">Cars Sold</a>
-<a href="dealer_rented.php">Cars Rented</a>
+
 
 <?php } ?>
 

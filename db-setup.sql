@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `images`(
 );
 
 CREATE TABLE IF NOT EXISTS `preownedcar`(
-    `preownedcarid` int,
+    `preownedcarid` int,    
     `kmdriven` int(7),
     `resaleprice` int(15) NOT NULL,
     `discount` varchar(4),

@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php
-require('../../db.php');
+require('db.php');
 
 $vehicle_id =  isset($_GET['vehicleid']) ? $_GET['vehicleid'] : '';
 
@@ -35,15 +35,18 @@ while($rows=$result->fetch_assoc())
 <td><?php echo $rows['model']; ?> </td>
 <td><?php echo $rows['price']; ?> </td>
 <td><?php echo $rows['brand']; ?> </td>
-<td> <a href="delete.php?vehicleid=<?php echo $rows['vehicle_id'];?>">Delete </a>
+<td> <a href="delete.php?vehicleid=<?php echo $rows['vehicle_id'];?>">Delete </a> </td>
 
 
 </tr>
 </tbody>
 
 </table>
+
+
+
 <?php
-}
+ }
 ?>
 
 <?php
