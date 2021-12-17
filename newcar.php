@@ -559,7 +559,7 @@ function closeimage()
 
 function buycar(carid,cartype)
 {
-  window.location.href="paymentredirect.php?carid="+carid+"&cartype="+cartype;
+  window.location.href="hello.php?carid="+carid+"&cartype="+cartype;
 }
 </script>
 <script type="text/javascript" src="JS/list.js"></script>
