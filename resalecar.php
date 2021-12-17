@@ -15,7 +15,7 @@ $usertype =  $_SESSION['usertype'];
 
 //first query to select all car and its dealer details
 $query1 = "select Name,Dname,Mname,status,manufacturer.location as mloc,dealer.phoneno as dph,d_email,
-dealer.website as dweb,mileage,color,status,fueltype,licenseplateno,resaleprice,kmdriven,discount from car inner join preownedcar inner join manufacturer inner join owns inner join dealer where car.manufacturerid=manufacturer.manufacturerid and 
+dealer.website as dweb,mileage,color,status,fueltype,licenseplateno,resaleprice,kmdriven,discount,customerid from car inner join preownedcar inner join manufacturer inner join owns inner join dealer where car.manufacturerid=manufacturer.manufacturerid and 
 owns.carid=car.carid and owns.dealerid=dealer.dealerID and car.carid=preownedcar.preownedcarid and car.carid=$carid";
 
 $result1 = mysqli_query($con,$query1);
@@ -414,7 +414,7 @@ Sorry but this car is sold out!
   <div class="card-header">Manufacturer Details</div>
   <div class="card-body">
     <p class="card-text"><b>Manufacturer Name - </b><?php echo $firstquery["Mname"]?></p>
-   
+    <p class="card-text"><b>Manufacturer Location - </b><?php echo $firstquery['mloc']?></p>
 
   </div>
 

@@ -486,7 +486,7 @@ if($soldoutcount>0)
 
 <div class="alert alert-primary alert-dismissible fade show" role="alert" style="display:flex;flex-direction:column">
 <b>QUICK INFO : </b>Number of cars you have sold - <?php echo $soldoutcount ?><a href="dealer_sold.php" style="width:fit-content">All sales details here</a>
-Number of cars you have rented - <?php echo $rentedcount ?><a href="dealer_rented.php" style="width:fit-content">All rental details here</a>
+
 </div>
 
 <?php } ?>

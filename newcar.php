@@ -15,7 +15,7 @@ $usertype =  $_SESSION['usertype'];
 
 //first query to select all car and its dealer details
 $query1 = "select Name,Dname,Mname,status,manufacturer.location as mloc,dealer.phoneno as dph,d_email,dealer.website as dweb,mileage,color,status,
-fueltype,Price,discount from car inner join newcar inner join manufacturer inner join owns inner join dealer where car.manufacturerid=manufacturer.manufacturerid and 
+fueltype,Price,discount,customerid from car inner join newcar inner join manufacturer inner join owns inner join dealer where car.manufacturerid=manufacturer.manufacturerid and 
 owns.carid=car.carid and owns.dealerid=dealer.dealerID and car.carid=newcar.newcarid and car.carid=$carid";
 
 $result1 = mysqli_query($con,$query1);
