@@ -161,6 +161,7 @@ CREATE TABLE IF NOT EXISTS `accessories`(
     `accessoryid` int(3) AUTO_INCREMENT,
     `accessoryname` varchar(30),
     `accessoryprice` int(5),
+    `accessoryphoto` varchar(300),
     `accessorydescription` varchar(150),
     PRIMARY KEY(`accessoryid`)
 );
