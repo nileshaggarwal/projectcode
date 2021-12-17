@@ -172,3 +172,4 @@ CREATE TABLE IF NOT EXISTS `accessorychosen`(
     FOREIGN KEY(`carid`) REFERENCES `car`(`carid`),
     FOREIGN KEY(`accessoryid`) REFERENCES `accessories`(`accessoryid`)
 );
+
