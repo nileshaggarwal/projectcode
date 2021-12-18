@@ -55,9 +55,13 @@ if(isset($_POST['addaccessory'])){
         $subquery="select price,discount from newcar where newcarid=".$vehicle_id;
         $subresults=mysqli_query($con,$subquery);
         $ans=mysqli_fetch_assoc($subresults);
+        if($ans["discount"]!==null){ 
         $discount=$ans["discount"];
-        $disprice=floor(($discount/100)*$ans["Price"]);
-        $newprice=$ans["Price"]-$disprice;
+        }else{
+          $discount=0;
+        }
+        $disprice=floor(($discount/100)*$ans["price"]);
+        $newprice=$ans["price"]-$disprice;
         $totalprice=$newprice;
     $i=0;
     if($arrlength>0){
@@ -70,7 +74,7 @@ if(isset($_POST['addaccessory'])){
             $i++;
         }}
 
-    $updatequery="update newcar set totalprice=$totalprice where newcarid=$vehicle_id";
+    $updatequery="UPDATE newcar SET totalprice=$totalprice WHERE newcarid=$vehicle_id";
     $ex = mysqli_query($con,$updatequery);
     }else if($cartype=='resale'){
         $subquery="select price,discount from preownedcar where preownedcarid=".$vehicle_id;
