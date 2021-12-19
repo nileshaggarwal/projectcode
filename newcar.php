@@ -314,6 +314,8 @@ else{
     <a class="nav-item nav-link active" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="true">Details</a>
     <a class="nav-item nav-link" id="nav-features-tab" data-toggle="tab" href="#nav-features" role="tab" aria-controls="nav-features" aria-selected="false">Features</a>
     <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</a>
+    <a class="nav-item nav-link" id="nav-gallery-ass" data-toggle="tab" href="#nav-accessories" role="tab" aria-controls="nav-gallery-ass" aria-selected="false">Accessories</a>
+
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -470,6 +472,33 @@ if(mysqli_num_rows($result3)===0)
 
     ?>
 
+  </div>
+  </div>
+  
+  
+  </div>
+  
+  <div class="tab-pane fade" id="nav-accessories" role="tabpanel" aria-labelledby="nav-gallery-ass">
+  
+  <div class="container" style="min-width:100%;margin:15px 0">
+  <div class="row">
+<?php  
+$sql = "SELECT * from accessories where accessoryid=(SELECT accessoryid from accessorychosen where carid=$carid)";
+$result4 = mysqli_query($con,$sql);
+
+while($rows=mysqli_fetch_assoc($result4))
+{
+?>
+
+  <li class="list-group-item">
+  <h5 class="mb-1">Name : <?php  echo $rows['accessoryname'] ?>  </h5>
+  <p class="mb-1">Price : <?php  echo $rows['accessoryprice'] ?> </p>
+  </li>
+  <?php 
+
+}
+
+?>
   </div>
   </div>
   
