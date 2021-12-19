@@ -1,12 +1,31 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="assesories.css?v=<?php echo time(); ?>" />
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <!--BOOTSTRAP CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+    body {
+        font-family: "Open Sans", sans-serif;
+    }
+    </style>
+</head>
+
 <?php
     session_start();
     if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) //user not logged in or user logged in is a dealer
 {
     header('location:index.php');
 }
-    include("db.php");
 
-    require('db.php');
+include("db.php");
+
+$username=$_SESSION['username'];
+
 $sql = "SELECT * FROM `accessories`";
 $result = mysqli_query($con,$sql);
 
@@ -101,67 +120,64 @@ if(isset($_POST['addaccessory'])){
     header("Location:paymentredirect.php?carid=".$vehicle_id."&cartype=".$cartype);}
 ?>
 
-
-<!DOCTYPE >
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="assesories.css" />
-  </head>
-
-  <body>
+<body>
+    <h4 class="display-4 text-center username">Hello <?php echo $username ?></h4>
+    <p class="accessories text-center">Choose some Accessories for your purchase</p>
     <div class="assesories_main">
-      <div class="main_assec">
-        <div class="ass_table">
-          <div class="ass_check">
-            <input type="checkbox" class="check_ass" />
-          </div>
-          <div class="ass_image" >
-<span>Image </spam>
-</div>
-          <div class="ass_name">
-<span>Assesories Name </span>
-</div>
+        <div class="main_assec">
+            <div class="ass_table">
+                <div class="ass_check">
+                    <span>Check</span>
+                </div>
+                <div class="ass_image">
+                    <span>Image </spam>
+                </div>
+                <div class="ass_name">
+                    <span>Assesories Name </span>
+                </div>
 
-          <div class="ass_description">
-            <span> Assesories Description</span>
-          </div>
-          <div class="ass_price">
-            <span>Assesories Price </span>
-          </div>
-        </div>
-        <form action="" method="POST">
-        <?php
+                <div class="ass_description">
+                    <span> Assesories Description</span>
+                </div>
+                <div class="ass_price">
+                    <span>Assesories Price </span>
+                </div>
+            </div>
+            <form action="" method="POST">
+                <?php
         while($rows =$result -> fetch_assoc())
         {
           ?>
-        <div class="ass_table1">
-          <div class="ass_check1">
-            <input type="checkbox" name="accessoryid<?php echo $rows['accessoryid'] ?>" value=<?php echo $rows['accessoryid'] ?> class="check_ass" />
-          </div>
-          <div class="ass_image1" >
-<div class="imagediv"> <img src=  <?php  echo $rows['accessoryphoto'] ?> alt="%"  /></div>
-</div>
-          <div class="ass_name1">
-<span><?php  echo $rows['accessoryname']?>accessoryid<?php echo $rows['accessoryid'] ?> </span>
-</div>
-          <div class="ass_description1">
-            <span> <?php echo $rows['accessorydescription']?></span>
-          </div>
-          <div class="ass_price1">
-            <span><?php echo $rows['accessoryprice']?> </span>
-          </div>
-          
+                <div class="ass_table1">
+                    <div class="ass_check1">
+                        <input type="checkbox" name="accessoryid<?php echo $rows['accessoryid'] ?>"
+                            value=<?php echo $rows['accessoryid'] ?> class="check_ass" />
+                    </div>
+                    <div class="ass_image1">
+                        <div class="imagediv"> <img src=<?php  echo $rows['accessoryphoto'] ?> alt="%" /></div>
+                    </div>
+                    <div class="ass_name1">
+                        <span><?php  echo $rows['accessoryname']?>accessoryid<?php echo $rows['accessoryid'] ?> </span>
+                    </div>
+                    <div class="ass_description1">
+                        <span> <?php echo $rows['accessorydescription']?></span>
+                    </div>
+                    <div class="ass_price1">
+                        <span><?php echo $rows['accessoryprice']?> </span>
+                    </div>
 
-        </div>
-    
-    <?php
+
+                </div>
+
+                <?php
 
         }
 ?>
-        
-        <button type="submit" name="addaccessory">Purchase this car</button>
-        </form>
-      </div>
+
+                <button class="purchasebutton" type="submit" name="addaccessory">Purchase this car</button>
+            </form>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
