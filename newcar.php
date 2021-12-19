@@ -483,7 +483,7 @@ if(mysqli_num_rows($result3)===0)
   <div class="container" style="min-width:100%;margin:15px 0">
   <div class="row">
 <?php  
-$sql = "SELECT * from accessories where accessoryid=(SELECT accessoryid from accessorychosen where carid=$carid)";
+$sql = "SELECT accessoryname,accessoryprice,accessoryphoto,accessorydescription  from accessories  inner join accessorychosen on accessories.accessoryid = accessorychosen.accessoryid and accessorychosen.carid=$carid;";
 $result4 = mysqli_query($con,$sql);
 
 while($rows=mysqli_fetch_assoc($result4))
