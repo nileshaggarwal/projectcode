@@ -1,3 +1,5 @@
+
+   
 <?php
 
 session_start();
@@ -311,11 +313,27 @@ else{
 
 <nav>
   <div class="nav nav-tabs" id="myTab" role="tablist">
+
+  <?php
+
+if($firstquery["status"]==="sold out"&&$firstquery["customerid"]===$userid ) 
+{
+?>
+
     <a class="nav-item nav-link active" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="true">Details</a>
     <a class="nav-item nav-link" id="nav-features-tab" data-toggle="tab" href="#nav-features" role="tab" aria-controls="nav-features" aria-selected="false">Features</a>
     <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</a>
     <a class="nav-item nav-link" id="nav-gallery-ass" data-toggle="tab" href="#nav-accessories" role="tab" aria-controls="nav-gallery-ass" aria-selected="false">Accessories</a>
+<?php 
+}
+else if($firstquery["status"] ==="available" )
+{
+?>
+  <a class="nav-item nav-link active" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="true">Details</a>
+    <a class="nav-item nav-link" id="nav-features-tab" data-toggle="tab" href="#nav-features" role="tab" aria-controls="nav-features" aria-selected="false">Features</a>
+    <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</a>
 
+<?php }?>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
