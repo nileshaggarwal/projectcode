@@ -58,7 +58,7 @@ if (window.history.replaceState) {
         <a href="cus_index.php">Home</a>
         <a id="active">Profile</a>
         <a href="cus_purchased.php">My Purchases</a>
-        <a href="cus_rented.php">Rented cars</a>
+
 
     </div>
 
@@ -90,7 +90,7 @@ if (window.history.replaceState) {
 
 
 
-        <img src="logow.png" height="50px" style="margin:auto">
+        <img src="./images/logow.png" height="50px" style="margin:auto">
 
     </div>
 

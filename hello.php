@@ -164,7 +164,7 @@ if(isset($_POST['addaccessory'])){
                         <div class="imagediv"> <img src=<?php  echo $rows['accessoryphoto'] ?> alt="%" /></div>
                     </div>
                     <div class="ass_name1">
-                        <span><?php  echo $rows['accessoryname']?>accessoryid<?php echo $rows['accessoryid'] ?> </span>
+                        <span><?php  echo $rows['accessoryname']?> </span>
                     </div>
                     <div class="ass_description1">
                         <span> <?php echo $rows['accessorydescription']?></span>

@@ -219,15 +219,15 @@ else
 
 
                         <?php
-if($usertype!=="dealer") //user type is not a dealer
+if($usertype!=="dealer")
 {
-if($firstquery["status"]==="available") //no user has bought the car yet
+if($firstquery["status"]==="available") 
 {
 ?>
 
                         <button type="button" class="btn btn-primary"
                             onclick="buycar(<?php echo $carid.',\'resale\'' ?>)">Buy this car</button>
-                        <!--<button type="button" class="btn btn-outline-info">Add to wishlist</button>-->
+
                         <?php
 }
 else if($firstquery["status"]==="sold out"&&$firstquery["customerid"]===$userid&&$usertype==="customer")
@@ -296,7 +296,7 @@ else
 
                     <li class="list-group-item">
                         <h5 class="mb-1"><?php echo $features["features"]?></h5>
-                        <p class="mb-1">Detailed descripton of the feature will go here. (Feature coming soon!)</p>
+
                     </li>
 
                     <?php
