@@ -39,7 +39,7 @@ $result3 = mysqli_query($con,$query3);
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="accessories_chosen.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="./css/accessories_chosen.css?v=<?php echo time(); ?>" />
     <title><?php echo $firstquery["Name"]?> - Vroomlife</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">

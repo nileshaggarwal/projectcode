@@ -30,7 +30,7 @@ $sql = "SELECT * FROM `accessories`";
 $result = mysqli_query($con,$sql);
 
 if(isset($_POST['addaccessory'])){
-    $query1="Select accessoryid from accessories";
+    $query1="Select * from accessories";
     $vehicle_id=$_GET['carid'];
     $cartype=$_REQUEST["cartype"];
     $result1=mysqli_query($con,$query1);
@@ -42,7 +42,7 @@ if(isset($_POST['addaccessory'])){
         $j=1;
         while($i<$rows)
         {
-            
+            if(isset($_POST["accessoryid$j"])){
             $accessoryvalue=$_POST["accessoryid$j"];
             ${"accessory".$j}=mysqli_real_escape_string($con,$accessoryvalue);
             
@@ -53,8 +53,11 @@ if(isset($_POST['addaccessory'])){
             }else{
                 $i++;
                 $j++;
-            }
-        }
+            }}else{
+                $i++;
+                $j++;
+            }}
+        
     }
     $arrlength=sizeof($accessoriesarr);
     $i=0;
@@ -71,7 +74,7 @@ if(isset($_POST['addaccessory'])){
 
     
     if($cartype=='new'){
-        $subquery="select price,discount from newcar where newcarid=".$vehicle_id;
+        $subquery="SELECT price,discount from newcar where newcarid=".$vehicle_id;
         $subresults=mysqli_query($con,$subquery);
         $ans=mysqli_fetch_assoc($subresults);
         if($ans["discount"]!==null){ 
@@ -85,7 +88,7 @@ if(isset($_POST['addaccessory'])){
     $i=0;
     if($arrlength>0){
         while($i<$arrlength){
-            $getpricequery="select accessoryprice from accessories where accessoryid=".$accessoriesarr[$i];
+            $getpricequery="SELECT accessoryprice from accessories where accessoryid=".$accessoriesarr[$i];
             $getprice=mysqli_query($con,$getpricequery);
             $get=mysqli_fetch_assoc($getprice);
             $assprice=$get['accessoryprice'];
@@ -96,17 +99,21 @@ if(isset($_POST['addaccessory'])){
     $updatequery="UPDATE newcar SET totalprice=$totalprice WHERE newcarid=$vehicle_id";
     $ex = mysqli_query($con,$updatequery);
     }else if($cartype=='resale'){
-        $subquery="select price,discount from preownedcar where preownedcarid=".$vehicle_id;
+        $subquery="SELECT resaleprice,discount from preownedcar where preownedcarid=".$vehicle_id;
         $subresults=mysqli_query($con,$subquery);
         $ans=mysqli_fetch_assoc($subresults);
-        $discount=$ans["discount"];
-        $disprice=floor(($discount/100)*$ans["Price"]);
-        $newprice=$ans["Price"]-$disprice;
+        if($ans["discount"]!==null){ 
+            $discount=$ans["discount"];
+        }else{
+            $discount=0;
+        }
+        $disprice=floor(($discount/100)*$ans["resaleprice"]);
+        $newprice=$ans["resaleprice"]-$disprice;
         $totalprice=$newprice;
     $i=0;
     if($arrlength>0){
         while($i<$arrlength){
-            $getpricequery="select accessoryprice from accessories where accessoryid=".$accessoriesarr[$i];
+            $getpricequery="SELECT accessoryprice from accessories where accessoryid=".$accessoriesarr[$i];
             $getprice=mysqli_query($con,$getpricequery);
             $get=mysqli_fetch_assoc($getprice);
             $assprice=$get['accessoryprice'];
@@ -114,7 +121,7 @@ if(isset($_POST['addaccessory'])){
             $i++;
         }}
 
-    $updatequery="update preownedcar set totalprice=$totalprice where newcarid=$vehicle_id";
+    $updatequery="UPDATE preownedcar SET totalprice=$totalprice WHERE newcarid=$vehicle_id";
     $ex = mysqli_query($con,$updatequery);
     }
     header("Location:paymentredirect.php?carid=".$vehicle_id."&cartype=".$cartype);}
