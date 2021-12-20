@@ -40,6 +40,7 @@ $result3 = mysqli_query($con,$query3);
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="accessories_chosen.css?v=<?php echo time(); ?>" />
     <title><?php echo $firstquery["Name"]?> - Rustom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -504,19 +505,63 @@ if(mysqli_num_rows($result3)===0)
 $sql = "SELECT accessoryname,accessoryprice,accessoryphoto,accessorydescription  from accessories  inner join accessorychosen on accessories.accessoryid = accessorychosen.accessoryid and accessorychosen.carid=$carid;";
 $result4 = mysqli_query($con,$sql);
 
-while($rows=mysqli_fetch_assoc($result4))
-{
-?>
-
-  <li class="list-group-item">
-  <h5 class="mb-1">Name : <?php  echo $rows['accessoryname'] ?>  </h5>
-  <p class="mb-1">Price : <?php  echo $rows['accessoryprice'] ?> </p>
-  </li>
-  <?php 
-
-}
 
 ?>
+
+<div class="assesories_main">
+        <div class="main_assec">
+            <div class="ass_table">
+                
+                <div class="ass_image">
+                    <span>Image </spam>
+                </div>
+                <div class="ass_name">
+                    <span>Assesories Name </span>
+                </div>
+
+                <div class="ass_description">
+                    <span> Assesories Description</span>
+                </div>
+                <div class="ass_price">
+                    <span>Assesories Price </span>
+                </div>
+            </div>
+            <form action="" method="POST">
+                <?php
+        while($rows=mysqli_fetch_assoc($result4))
+        {
+          ?>
+                <div class="ass_table1">
+                  
+                    <div class="ass_image1">
+                        <div class="imagediv"> <img src=<?php  echo $rows['accessoryphoto'] ?> alt="%" /></div>
+                    </div>
+                    <div class="ass_name1">
+                        <span><?php  echo $rows['accessoryname']?> </span>
+                    </div>
+                    <div class="ass_description1">
+                        <span> <?php echo $rows['accessorydescription']?></span>
+                    </div>
+                    <div class="ass_price1">
+                        <span><?php echo $rows['accessoryprice']?> </span>
+                    </div>
+
+
+                </div>
+
+                <?php
+
+        }
+?>
+
+            </form>
+        </div>
+    </div>
+
+
+
+
+
   </div>
   </div>
   

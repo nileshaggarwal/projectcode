@@ -36,6 +36,7 @@ $result3 = mysqli_query($con,$query3);
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="accessories_chosen.css?v=<?php echo time(); ?>" />
     <title><?php echo $firstquery["Name"]?> - Rustom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -259,7 +260,7 @@ $result3 = mysqli_query($con,$query3);
 <a href="cus_index.php">Home</a>
 <a href="cus_profile.php">Profile</a>
 <a href="cus_purchased.php">My Purchases</a>
-<a href="cus_rented.php">Rented cars</a>
+
 
 <?php }
 else{
@@ -268,7 +269,7 @@ else{
 <a href="dealer_index.php">Home</a>
 <a href="dealer_profile.php">Profile</a>
 <a href="dealer_sold.php">Cars Sold</a>
-<a href="dealer_rented.php">Cars Rented</a>
+
 
 <?php } ?>
 
@@ -308,9 +309,28 @@ else{
 
 <nav>
   <div class="nav nav-tabs" id="myTab" role="tablist">
+    <?php
+  if($firstquery["status"]==="sold out"&&$firstquery["customerid"]===$userid ) 
+{
+?>
     <a class="nav-item nav-link active" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="true">Details</a>
     <a class="nav-item nav-link" id="nav-features-tab" data-toggle="tab" href="#nav-features" role="tab" aria-controls="nav-features" aria-selected="false">Features</a>
     <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</a>
+    <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-ass" role="tab" aria-controls="nav-ass" aria-selected="false">Accessories</a>
+    <?php 
+}
+else if($firstquery["status"] ==="available" )
+{
+?>
+    <a class="nav-item nav-link active" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="true">Details</a>
+    <a class="nav-item nav-link" id="nav-features-tab" data-toggle="tab" href="#nav-features" role="tab" aria-controls="nav-features" aria-selected="false">Features</a>
+    <a class="nav-item nav-link" id="nav-gallery-tab" data-toggle="tab" href="#nav-gallery" role="tab" aria-controls="nav-gallery" aria-selected="false">Gallery</a>
+
+
+
+<?php }?>
+
+
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -481,6 +501,74 @@ if(mysqli_num_rows($result3)===0)
   
   
   </div>
+  <div class="tab-pane fade" id="nav-ass" role="tabpanel" aria-labelledby="nav-ass-tab">
+  
+  <div class="container" style="min-width:100%;margin:15px 0">
+  <div class="row">
+
+  <?php  
+$sql = "SELECT accessoryname,accessoryprice,accessoryphoto,accessorydescription  from accessories  inner join accessorychosen on accessories.accessoryid = accessorychosen.accessoryid and accessorychosen.carid=$carid;";
+$result4 = mysqli_query($con,$sql);
+
+
+?>
+
+<div class="assesories_main">
+        <div class="main_assec">
+            <div class="ass_table">
+                
+                <div class="ass_image">
+                    <span>Image </spam>
+                </div>
+                <div class="ass_name">
+                    <span>Assesories Name </span>
+                </div>
+
+                <div class="ass_description">
+                    <span> Assesories Description</span>
+                </div>
+                <div class="ass_price">
+                    <span>Assesories Price </span>
+                </div>
+            </div>
+            <form action="" method="POST">
+                <?php
+        while($rows=mysqli_fetch_assoc($result4))
+        {
+          ?>
+                <div class="ass_table1">
+                  
+                    <div class="ass_image1">
+                        <div class="imagediv"> <img src=<?php  echo $rows['accessoryphoto'] ?> alt="%" /></div>
+                    </div>
+                    <div class="ass_name1">
+                        <span><?php  echo $rows['accessoryname']?> </span>
+                    </div>
+                    <div class="ass_description1">
+                        <span> <?php echo $rows['accessorydescription']?></span>
+                    </div>
+                    <div class="ass_price1">
+                        <span><?php echo $rows['accessoryprice']?> </span>
+                    </div>
+
+
+                </div>
+
+                <?php
+
+        }
+?>
+
+            </form>
+        </div>
+    </div>
+  </div>
+  </div>
+  
+  
+  </div>
+
+
 </div>
 
 
