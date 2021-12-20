@@ -1,11 +1,17 @@
+.assesories_main {
+  width: 100%;
+}
+
 .main_assec {
-  padding: 2% 8%;
+  padding: 2% 3%;
+  display: block;
+  width: 100%;
 }
 
 .main_assec .ass_table {
   display: flex;
   align-items: center;
-  width: 1200px;
+  width: 100%;
 }
 
 .username {
@@ -67,7 +73,7 @@
 
 .ass_table1 {
   height: 200px;
-  width: 1200px;
+  width: 100%;
   display: flex;
   align-items: center;
   font-weight: 600;

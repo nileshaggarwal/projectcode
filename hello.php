@@ -98,7 +98,8 @@ if(isset($_POST['addaccessory'])){
 
     $updatequery="UPDATE newcar SET totalprice=$totalprice WHERE newcarid=$vehicle_id";
     $ex = mysqli_query($con,$updatequery);
-    }else if($cartype=='resale'){
+    }
+    if($cartype=='resale'){
         $subquery="SELECT resaleprice,discount from preownedcar where preownedcarid=".$vehicle_id;
         $subresults=mysqli_query($con,$subquery);
         $ans=mysqli_fetch_assoc($subresults);
@@ -121,7 +122,7 @@ if(isset($_POST['addaccessory'])){
             $i++;
         }}
 
-    $updatequery="UPDATE preownedcar SET totalprice=$totalprice WHERE newcarid=$vehicle_id";
+    $updatequery="UPDATE preownedcar SET totalprice=$totalprice WHERE preownedcarid=$vehicle_id";
     $ex = mysqli_query($con,$updatequery);
     }
     header("Location:paymentredirect.php?carid=".$vehicle_id."&cartype=".$cartype);}
