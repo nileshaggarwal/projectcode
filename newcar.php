@@ -39,7 +39,7 @@ $result3 = mysqli_query($con,$query3);
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="accessories_chosen.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="./css/newcar.css?<?php echo time(); ?>" />
     <title><?php echo $firstquery["Name"]?> - Vroomlife</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -58,7 +58,7 @@ $result3 = mysqli_query($con,$query3);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" type="text/css" href="./css/newcar.css?php echo time(); ?>" />
+
 </head>
 
 
@@ -213,15 +213,15 @@ else if($firstquery["status"] ==="available" )
 
                         <?php
 
-    if($usertype!=="dealer") //user type is not a dealer
+    if($usertype!=="dealer") 
     {
-    if($firstquery["status"]==="available") //no user has bought the car yet
+    if($firstquery["status"]==="available") 
     {
     ?>
 
                         <button type="button" class="btn btn-primary"
                             onclick="buycar(<?php echo $carid.',\'new\'' ?>)">Buy this car</button>
-                        <!--<button type="button" class="btn btn-outline-info">Add to wishlist</button>-->
+
                         <?php 
     }
     else if($firstquery["status"]==="sold out"&&$firstquery["customerid"]===$userid&&$usertype==="customer")
@@ -289,7 +289,7 @@ else if($firstquery["status"] ==="available" )
 
                     <li class="list-group-item">
                         <h5 class="mb-1"><?php echo $features["features"]?></h5>
-                        <p class="mb-1">Detailed descripton of the feature will go here. (Feature coming soon!)</p>
+
                     </li>
 
                     <?php
