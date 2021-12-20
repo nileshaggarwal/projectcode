@@ -30,58 +30,9 @@ $cartype=$_REQUEST["cartype"];
     <!--BOOTSTRAP CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="./css/paymentdirect.css?php echo time(); ?>" />
 </head>
 
-<style>
-.paymentbox {
-    font-size: 22px;
-    margin: 100px auto;
-    width: 70%;
-    box-shadow: 0 0 6px 0 #5F396F;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.button {
-    background-color: #5F396F;
-    margin-top: 35px;
-    padding: 10px;
-    width: 300px;
-    color: white;
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.button:hover {
-    background-color: #C39BD3;
-}
-
-#title {
-    font-size: 40px;
-    margin-bottom: 40px;
-}
-
-@media screen and (max-width:769px) {
-    .paymentbox {
-        width: 90%;
-        font-size: 20px;
-    }
-
-    #title {
-        font-size: 32px;
-    }
-
-    .button {
-        width: 100%;
-    }
-}
-</style>
 
 <body>
 

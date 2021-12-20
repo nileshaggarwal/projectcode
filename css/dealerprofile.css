@@ -1,0 +1,155 @@
+body {
+  margin: 0;
+  padding: 0;
+  animation: bgcolor infinite 20s;
+}
+
+.btn btn-lg btn-success {
+  color: linear-gradient(navajowhite, darkorchid);
+}
+
+body {
+  background-color: linear-gradient(navajowhite, darkorchid);
+}
+
+#listicon {
+  position: absolute;
+  left: 20px;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+#title {
+  font-family: "Open Sans", sans-serif;
+  margin: auto;
+  margin-bottom: 0.5px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+#header #logout {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+
+#list {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  z-index: 20;
+  left: 0;
+  background-color: #c39bd3;
+  width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.15s ease-in-out;
+}
+
+#list a {
+  font-weight: 350;
+  text-align: center;
+  color: white;
+  font-size: 1.5rem;
+  margin: 5px 0;
+  transition: color 0.15s ease-in-out;
+}
+
+#list #active {
+  cursor: default;
+  color: #76448a;
+}
+
+#list a:hover {
+  color: #76448a;
+  text-decoration: none;
+}
+
+#list #closelist {
+  cursor: pointer;
+  background-color: #76448a;
+  width: fit-content;
+  position: absolute;
+  top: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  right: 10px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+#alert {
+  display: none;
+}
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 10;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  text-align: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 650px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#wrongpass {
+  display: none;
+}
+
+#password_match {
+  display: none;
+}
+
+#password_successful {
+  display: none;
+}

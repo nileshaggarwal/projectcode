@@ -2,19 +2,19 @@
 session_start();
 include("db.php");
 $changeflag = false;
-$dealerid = $_SESSION['userid']; //getting the dealer id
+$dealerid = $_SESSION['userid']; 
 $dealername = $_SESSION['username'];
 
-//unserialize data from the ajax request
+
 $params = array();
 parse_str($_POST['formdata'], $params);
 
-//dealer table query
+
 $query = "SELECT * FROM dealer WHERE dealerid = $dealerid";
 $result = mysqli_query($con, $query);
 $row = mysqli_fetch_assoc($result);
 
-//branch table query
+
 $branch_query = "SELECT * FROM branch WHERE dealerid = $dealerid";
 $branch_result = mysqli_query($con, $branch_query);
 
@@ -27,10 +27,10 @@ if($row['DName'] != $d_name || $row['PhoneNo'] != $d_phoneno || $row['Website'] 
     $dealer_update= "UPDATE dealer SET DName=?, PhoneNo=?, Website=? WHERE dealerid = $dealerid";
     if($stmt= mysqli_prepare($con, $dealer_update) )
     {
-        //Bind the variables to prepared statements as parameters
+        
         mysqli_stmt_bind_param($stmt, "sss", $d_name, $d_phoneno, $d_website);
 
-        //Execute the statement
+        
         if(mysqli_stmt_execute($stmt))
         {
             $_SESSION['username'] = $d_name;

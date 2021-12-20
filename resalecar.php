@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION['logged_in'])) //user not logged in
+if(!isset($_SESSION['logged_in'])) 
 {
     header('location:index.php');
 }
@@ -13,7 +13,7 @@ $carid = $_REQUEST["carid"];
 $userid = $_SESSION['userid'];
 $usertype =  $_SESSION['usertype'];
 
-//first query to select all car and its dealer details
+
 $query1 = "select Name,Dname,Mname,status,manufacturer.location as mloc,dealer.phoneno as dph,d_email,
 dealer.website as dweb,mileage,color,status,fueltype,licenseplateno,resaleprice,kmdriven,discount,customerid from car inner join preownedcar inner join manufacturer inner join owns inner join dealer where car.manufacturerid=manufacturer.manufacturerid and 
 owns.carid=car.carid and owns.dealerid=dealer.dealerID and car.carid=preownedcar.preownedcarid and car.carid=$carid";
@@ -21,12 +21,12 @@ owns.carid=car.carid and owns.dealerid=dealer.dealerID and car.carid=preownedcar
 $result1 = mysqli_query($con,$query1);
 $firstquery = mysqli_fetch_assoc($result1);
 
-//second query to get the features of the car
+
 $query2 = "select features from features where car_id=$carid";
 
 $result2 = mysqli_query($con,$query2);
 
-//third query to get the images of the car
+
 $query3 = "select images from images where carid=$carid";
 
 $result3 = mysqli_query($con,$query3);
@@ -56,189 +56,9 @@ $result3 = mysqli_query($con,$query3);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" type="text/css" href="./css/resalecar.css?v=<?php echo time(); ?>" />
 </head>
 
-<style>
-#listicon {
-    position: absolute;
-    left: 20px;
-    margin-top: 1px;
-    cursor: pointer;
-}
-
-#list {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    z-index: 20;
-    left: 0;
-    background-color: #C39BD3;
-    width: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: width 0.15s ease-in-out;
-}
-
-#list a {
-    font-weight: 350;
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    margin: 5px 0;
-    transition: color 0.15s ease-in-out;
-}
-
-#list #active {
-    cursor: default;
-    color: #76448A;
-}
-
-#list a:hover {
-    color: #76448A;
-    text-decoration: none;
-}
-
-#list #closelist {
-    cursor: pointer;
-    background-color: #76448A;
-    width: fit-content;
-    position: absolute;
-    top: 10px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    right: 10px;
-}
-
-
-#header #logout {
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-}
-
-#content {
-    width: 80%;
-    margin: auto;
-}
-
-.image {
-    height: 475px;
-    margin: 0.5% 0.5%;
-    width: 49%;
-    object-fit: cover;
-    overflow: hidden;
-}
-
-.image img {
-    height: 475px;
-}
-
-#overlay {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    opacity: 0;
-    margin-top: 50px;
-    width: 100%;
-    top: 0;
-    background-color: black;
-    z-index: -1;
-}
-
-#modal {
-    height: 475px;
-    min-width: 80%;
-    max-width: 80%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#modal img {
-    height: 475px;
-}
-
-
-.tile {
-    height: 500px;
-    min-width: 60%;
-    max-width: 60%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.photo {
-    overflow: hidden;
-    transition: transform .5s ease-in-out;
-}
-
-.photo img {
-    height: 500px;
-}
-
-/*#close
-{
-  background-color:red;
-  width:fit-content;
-}*/
-
-
-
-@media screen and (max-width:1000px) {
-
-    #carname {
-        font-size: 40px;
-    }
-
-    #modal,
-    #modal img,
-    .image,
-    .image img {
-        height: 350px;
-    }
-
-}
-
-@media screen and (max-width:600px) {
-
-    #modal,
-    #modal img,
-    .image,
-    .image img {
-        height: 250px;
-    }
-
-}
-
-@media screen and (max-width:400px) {
-
-    #modal,
-    #modal img,
-    .image,
-    .image img {
-        height: 175px;
-    }
-
-}
-
-@media screen and (max-width:1200px) {
-
-    .image {
-        width: 99%;
-    }
-
-}
-</style>
 
 <body>
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="assesories.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="./css/assesories.css?v=<?php echo time(); ?>" />
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <!--BOOTSTRAP CDN-->

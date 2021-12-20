@@ -9,28 +9,18 @@ if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['us
 
 include("db.php");
 
-$dealerid = $_SESSION['userid']; //getting the dealer id
+$dealerid = $_SESSION['userid']; 
 $dealername = $_SESSION['username'];
 
-//first query to select all the cars that the dealer owns
 $query1 = "select car.carid,dealerid from car inner join owns where owns.carid=car.carid and dealerid = $dealerid order by uploadedtime desc";
 $result1 = mysqli_query($con,$query1);
 
-//second query to get whether any cars have been sold out
+
 $statusquery = "select count(status) as soldoutcount from car inner join owns where owns.carid=car.carid and dealerid = $dealerid and status='sold out'";
 $exec = mysqli_query($con,$statusquery);
 $res = mysqli_fetch_assoc($exec);
 
-$soldoutcount = $res["soldoutcount"]; //no of cars sold out
-
-
-// //third query to get whether any cars have been rented
-// $statusquery2 = "select count(status) as rentedcount from car inner join rent inner join owns where rentalcarid=car.carid and 
-// car.carid=owns.carid and enddate is null and dealerid = $dealerid and status='rented'";
-// $exec2 = mysqli_query($con,$statusquery2);
-// $res2 = mysqli_fetch_assoc($exec2);
-
-// $rentedcount = $res2["rentedcount"]; //no of cars sold out
+$soldoutcount = $res["soldoutcount"]; 
 
 
 ?>
@@ -43,9 +33,7 @@ $soldoutcount = $res["soldoutcount"]; //no of cars sold out
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="icon" href="icon.ico">
-    <!--Google Fonts-->
 
-    <!--BOOTSTRAP CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -61,253 +49,11 @@ $soldoutcount = $res["soldoutcount"]; //no of cars sold out
 
     <link rel="stylesheet" href="dealerstyles.css">
 
-    <!--<script src="https://kit.fontawesome.com/yourcode.js"></script>-->
-
+    <link rel="stylesheet" type="text/css" href="./css/dealerindex.css?php echo time(); ?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<style>
-form.example input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid darkblue;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
 
-}
-
-form.example button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: #2196F3;
-    color: white;
-    font-size: 17px;
-    border: 1px solid darkblue;
-    border-left: none;
-    cursor: pointer;
-}
-
-form.example button:hover {
-    background: #0b7dda;
-}
-
-form.example::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.open-button {
-    background-color: #2196F3;
-    border: 1px solid darkblue;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    width: 220px;
-}
-
-
-.bg-modal {
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 50;
-}
-
-.modal-contents {
-    height: 400px;
-    width: 800px;
-    padding: 50px;
-    background-color: white;
-    text-align: center;
-    position: relative;
-    border-radius: 4px;
-}
-
-.card {
-    width: 800px !important;
-    margin: 10px 0;
-}
-
-.close {
-    position: absolute;
-    top: 0;
-    right: 10px;
-    font-size: 42px;
-    color: #333;
-    transform: rotate(45deg);
-    cursor: pointer;
-}
-
-.close:hover {
-    color: #666;
-}
-
-.button {
-    background-color: #2196F3;
-    border: 2px solid white;
-    border-radius: 30px;
-    text-decoration: none;
-    padding: 10px 28px;
-    color: white;
-    float: right;
-    margin-top: 10px;
-    display: inline-block;
-}
-
-.button:hover {
-    text-decoration: none;
-    background-color: white;
-    color: #2196F3;
-    border: 2px solid #2196F3;
-}
-
-.column {
-    float: left;
-    width: 50%;
-    padding: 5px;
-}
-
-
-#entry:hover {
-    text-decoration: underline;
-    color: black;
-}
-
-#listicon {
-    position: absolute;
-    left: 20px;
-    margin-top: 1px;
-    cursor: pointer;
-}
-
-
-#title {
-    font-family: 'Open Sans', sans-serif;
-    margin: auto;
-    margin-bottom: 0.5px;
-    text-align: center;
-    font-weight: 300;
-    font-size: 1.5rem;
-}
-
-#header #logout {
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-}
-
-#list {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    z-index: 20;
-    left: 0;
-    background-color: #C39BD3;
-    width: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: width 0.15s ease-in-out;
-}
-
-#list a {
-    font-weight: 350;
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    margin: 5px 0;
-    transition: color 0.15s ease-in-out;
-}
-
-#list #active {
-    cursor: default;
-    color: #76448A;
-}
-
-#list a:hover {
-    color: #76448A;
-    text-decoration: none;
-}
-
-#list #closelist {
-    cursor: pointer;
-    background-color: #76448A;
-    width: fit-content;
-    position: absolute;
-    top: 10px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    right: 10px;
-}
-
-
-
-
-@media screen and (max-width:1000px) {
-
-    #carname {
-        font-size: 40px;
-    }
-
-}
-
-@media screen and (max-width:767px) {
-    #explore {
-        text-align: center;
-        padding: 20px 0;
-        border-bottom: 1px solid #C39BD3;
-    }
-
-    .card {
-
-        padding-bottom: 15px;
-    }
-
-    .carousel-inner,
-    .carousel-inner img {
-        height: 320px;
-    }
-}
-
-#discount-modal {
-    display: none;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    top: 0;
-    left: 0;
-    z-index: 10;
-    align-items: center;
-    justify-content: center;
-}
-
-.contentbox {
-    font-size: 1.3rem;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    width: 500px;
-    height: 25%;
-    padding: 15px;
-    text-align: center;
-}
-</style>
 
 
 <script>
