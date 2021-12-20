@@ -17,12 +17,12 @@ $cusname = $_SESSION['username'];
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="cus_purchased.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="./css/cus_purchased.css?v=<?php echo time(); ?>" />
     <title><?php echo $cusname."'s " ?> Purchases - VroomLife</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="icon" href="icon.ico">
- 
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -77,7 +77,7 @@ $cusname = $_SESSION['username'];
             </svg>
         </a>
 
-       
+
 
         <img src="logow.png" height="50px" style="margin:auto">
 

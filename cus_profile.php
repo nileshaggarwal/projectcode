@@ -21,14 +21,14 @@ $row = mysqli_fetch_assoc($result);
 
 
 <head>
-<link rel="stylesheet" type="text/css" href="cus_profile.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="./css/cus_profile.css?v=<?php echo time(); ?>" />
     <title><?php echo $row['CustomerName']  ?> Profile - VroomLife</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="icon.ico">
 
 
-   
+
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -88,7 +88,7 @@ if (window.history.replaceState) {
             </svg>
         </a>
 
-       
+
 
         <img src="logow.png" height="50px" style="margin:auto">
 
@@ -97,17 +97,17 @@ if (window.history.replaceState) {
     <div class="container bootstrap snippet" style="width:80%;margin:auto;margin-top:135px;margin-bottom:60px">
         <div class="row" style="padding:20px 0;border-bottom:1px solid #C39BD3">
             <h1 class="display-4" style="font-size:40px">My Profile</h1>
-     
+
         </div>
         <div class="row">
             <div class="col-sm-3" style="margin-top:25px">
-        
+
 
 
                 <div class="text-center container-fluid">
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-thumbnail"
                         alt="avatar" style="margin-bottom:10px">
-                 
+
                 </div><br>
 
 
@@ -187,7 +187,7 @@ if (window.history.replaceState) {
                                 </div>
                             </div>
 
-                         
+
                             <div style="margin-top:25px">
                                 <a href="javascript: void(0)" onclick="changePassword();">Change Password</a>
                             </div>
@@ -202,17 +202,17 @@ if (window.history.replaceState) {
                             </div>
                         </form>
                         <div id="alert" class="alert alert-info" role="alert">
-                         
+
                         </div>
                     </div>
 
                 </div>
-           
+
             </div>
-          
+
 
         </div>
-    
+
         <div id="change_password" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -229,7 +229,7 @@ if (window.history.replaceState) {
                         </div>
                     </div>
                     <div id="wrongpass" class="alert alert-info" role="alert">
-                       
+
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
@@ -250,7 +250,7 @@ if (window.history.replaceState) {
                         </div>
                     </div>
                     <div id="password_match" class="alert alert-info" role="alert">
-                    
+
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
@@ -261,7 +261,7 @@ if (window.history.replaceState) {
                     </div>
                 </form>
                 <div id="password_successful" class="alert alert-info" role="alert">
-                 
+
                 </div>
             </div>
         </div>
@@ -271,7 +271,7 @@ if (window.history.replaceState) {
 $(document).ready(function() {
 
     var dtToday = new Date();
-    var month = dtToday.getMonth() + 1; 
+    var month = dtToday.getMonth() + 1;
     var day = dtToday.getDate();
     var year = dtToday.getFullYear() - 18;
     if (month < 10)
@@ -282,7 +282,7 @@ $(document).ready(function() {
     var maxDate = year + '-' + month + '-' + day;
     $('#dob').attr('max', maxDate);
 
-  
+
     var readURL = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -301,7 +301,7 @@ $(document).ready(function() {
 
 
 $("#update").submit(function(event) {
-    event.preventDefault(); 
+    event.preventDefault();
     var formdata = {
         'name': $('#name').val(),
         'dob': $('#dob').val(),
@@ -358,7 +358,7 @@ function updatePassword() {
             $("#password_successful").css("display", "block");
             $("#password_successful").css("background-color", "rgba(0, 255, 0, 0.1)");
             $("#password_successful").css("color", "#00cc00");
-           
+
         }
     });
 }
@@ -381,7 +381,7 @@ $("#change_password").submit(function(event) {
             } else {
                 $("#wrongpass").css("background-color", "rgba(0, 255, 0, 0.1)");
                 $("#wrongpass").css("color", "#00cc00");
-               
+
                 if (confirmPassword()) {
                     updatePassword();
                 }
