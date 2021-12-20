@@ -80,7 +80,7 @@ $cusname = $_SESSION['username'];
 
         <!--<h3 id="title">VroomLife</h3>-->
 
-        <img src="logow.png" height="50px" style="margin:auto">
+        <img src="./images/logow.png" height="50px" style="margin:auto">
 
     </div>
 

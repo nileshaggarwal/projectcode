@@ -79,7 +79,7 @@ $cusname = $_SESSION['username'];
 
 
 
-        <img src="logow.png" height="50px" style="margin:auto">
+        <img src="./images/logow.png" height="50px" style="margin:auto">
 
     </div>
 
