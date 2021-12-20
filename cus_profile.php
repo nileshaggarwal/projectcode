@@ -9,8 +9,8 @@ if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['us
 
 include('db.php');
 
-$cusid = $_SESSION["userid"]; //getting the customer id
-// $cusname = $_SESSION['CustomerName'];
+$cusid = $_SESSION["userid"]; 
+
 $query = "SELECT * FROM customer WHERE customerID = $cusid ";
 $result = mysqli_query($con, $query);
 $row = mysqli_fetch_assoc($result);
@@ -21,15 +21,14 @@ $row = mysqli_fetch_assoc($result);
 
 
 <head>
+<link rel="stylesheet" type="text/css" href="cus_profile.css?v=<?php echo time(); ?>" />
     <title><?php echo $row['CustomerName']  ?> Profile - VroomLife</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="icon.ico">
 
 
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+   
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -37,150 +36,7 @@ $row = mysqli_fetch_assoc($result);
     <link href="dealer_profile.css" rel="stylesheet">
 </head>
 
-<style>
-#listicon {
-    position: absolute;
-    left: 20px;
-    margin-top: 1px;
-    cursor: pointer;
-}
 
-
-#title {
-    font-family: 'Open Sans', sans-serif;
-    margin: auto;
-    margin-bottom: 0.5px;
-    text-align: center;
-    font-weight: 300;
-    font-size: 1.5rem;
-}
-
-#header #logout {
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-}
-
-#list {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    z-index: 20;
-    left: 0;
-    background-color: #C39BD3;
-    width: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: width 0.15s ease-in-out;
-}
-
-#list a {
-    font-weight: 350;
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    margin: 5px 0;
-    transition: color 0.15s ease-in-out;
-}
-
-#list #active {
-    cursor: default;
-    color: #76448A;
-}
-
-#list a:hover {
-    color: #76448A;
-    text-decoration: none;
-}
-
-#list #closelist {
-    cursor: pointer;
-    background-color: #76448A;
-    width: fit-content;
-    position: absolute;
-    top: 10px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    right: 10px;
-}
-
-h4 {
-    font-size: 16px;
-}
-
-#alert {
-    display: none;
-}
-
-.modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 10;
-    /* Sit on top */
-    padding-top: 100px;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%;
-}
-
-@media only screen and (max-width:650px) {
-    .modal-content {
-        width: 100%;
-    }
-}
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    text-align: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#wrongpass {
-    display: none;
-}
-
-#password_match {
-    display: none;
-}
-
-#password_successful {
-    display: none;
-}
-</style>
 <script>
 if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
@@ -232,7 +88,7 @@ if (window.history.replaceState) {
             </svg>
         </a>
 
-        <!--<h3 id="title">VroomLife</h3>-->
+       
 
         <img src="logow.png" height="50px" style="margin:auto">
 
@@ -241,18 +97,17 @@ if (window.history.replaceState) {
     <div class="container bootstrap snippet" style="width:80%;margin:auto;margin-top:135px;margin-bottom:60px">
         <div class="row" style="padding:20px 0;border-bottom:1px solid #C39BD3">
             <h1 class="display-4" style="font-size:40px">My Profile</h1>
-            <!--<div class="col-sm-2"><img title="profile image" height="60px" class="img-circle img-responsive" src="logo.jpg" alt = "VroomLife Logo" ></div>-->
+     
         </div>
         <div class="row">
             <div class="col-sm-3" style="margin-top:25px">
-                <!--left col-->
+        
 
 
                 <div class="text-center container-fluid">
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-thumbnail"
                         alt="avatar" style="margin-bottom:10px">
-                    <!--<h6>Upload a different photo</h6>
-        <input type="file" class="center-block file-upload" style="width:95px">-->
+                 
                 </div><br>
 
 
@@ -332,20 +187,7 @@ if (window.history.replaceState) {
                                 </div>
                             </div>
 
-                            <!--<div class="form-group">
-                        
-                        <div class="col-xs-6">
-                            <label for="password"><h4>Password</h4></label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" title="enter your password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        
-                        <div class="col-xs-6">
-                        <label for="password2"><h4>Verify Password</h4></label>
-                            <input type="password" class="form-control" name="password2" id="password2" placeholder="Verify password" title="re-enter your password">
-                        </div>
-                    </div>-->
+                         
                             <div style="margin-top:25px">
                                 <a href="javascript: void(0)" onclick="changePassword();">Change Password</a>
                             </div>
@@ -360,17 +202,17 @@ if (window.history.replaceState) {
                             </div>
                         </form>
                         <div id="alert" class="alert alert-info" role="alert">
-                            <!--Displays the alert message after updation-->
+                         
                         </div>
                     </div>
 
                 </div>
-                <!--/tab-pane-->
+           
             </div>
-            <!--/tab-content-->
+          
 
         </div>
-        <!--/col-9-->
+    
         <div id="change_password" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -387,7 +229,7 @@ if (window.history.replaceState) {
                         </div>
                     </div>
                     <div id="wrongpass" class="alert alert-info" role="alert">
-                        <!--Displays the alert message if password is wrong-->
+                       
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
@@ -408,7 +250,7 @@ if (window.history.replaceState) {
                         </div>
                     </div>
                     <div id="password_match" class="alert alert-info" role="alert">
-                        <!--Displays the alert message if password doesn't match-->
+                    
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
@@ -419,7 +261,7 @@ if (window.history.replaceState) {
                     </div>
                 </form>
                 <div id="password_successful" class="alert alert-info" role="alert">
-                    <!--Displays the alert message if password doesn't match-->
+                 
                 </div>
             </div>
         </div>
@@ -427,9 +269,9 @@ if (window.history.replaceState) {
 
 <script>
 $(document).ready(function() {
-    //Date validation
+
     var dtToday = new Date();
-    var month = dtToday.getMonth() + 1; // getMonth() is zero-based
+    var month = dtToday.getMonth() + 1; 
     var day = dtToday.getDate();
     var year = dtToday.getFullYear() - 18;
     if (month < 10)
@@ -440,7 +282,7 @@ $(document).ready(function() {
     var maxDate = year + '-' + month + '-' + day;
     $('#dob').attr('max', maxDate);
 
-    //for file upload
+  
     var readURL = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -459,7 +301,7 @@ $(document).ready(function() {
 
 
 $("#update").submit(function(event) {
-    event.preventDefault(); // avoid to execute the actual submit of the form.
+    event.preventDefault(); 
     var formdata = {
         'name': $('#name').val(),
         'dob': $('#dob').val(),
@@ -487,17 +329,17 @@ $("#update").submit(function(event) {
     });
 });
 
-// Get the modal
+
 var modal = document.getElementById("change_password");
 
-// Get the <span> element that closes the modal
+
 var span = document.getElementsByClassName("close")[0];
 
 function changePassword() {
     modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
+
 span.onclick = function() {
     modal.style.display = "none";
 }
@@ -516,7 +358,7 @@ function updatePassword() {
             $("#password_successful").css("display", "block");
             $("#password_successful").css("background-color", "rgba(0, 255, 0, 0.1)");
             $("#password_successful").css("color", "#00cc00");
-            // show response from the php script.
+           
         }
     });
 }
@@ -539,7 +381,7 @@ $("#change_password").submit(function(event) {
             } else {
                 $("#wrongpass").css("background-color", "rgba(0, 255, 0, 0.1)");
                 $("#wrongpass").css("color", "#00cc00");
-                //checking if the passwords match
+               
                 if (confirmPassword()) {
                     updatePassword();
                 }

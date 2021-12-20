@@ -1,6 +1,6 @@
 <?php
 
-//this is the session check for this page
+
 session_start();
 
 if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) //user not logged in or user logged in is a dealer
@@ -10,7 +10,7 @@ if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['us
 
 include("db.php");
 
-$cusid = $_SESSION['userid']; //getting the customer id
+$cusid = $_SESSION['userid']; 
 $cusname = $_SESSION['username'];
 ?>
 
@@ -22,9 +22,9 @@ $cusname = $_SESSION['username'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="icon" href="icon.ico">
-    <!--Google Fonts-->
+    
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <!--BOOTSTRAP CDN-->
+   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 

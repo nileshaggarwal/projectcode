@@ -1,16 +1,15 @@
 <?php
 
-//this is the session check for this page
 session_start();
 
-if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) //user not logged in or user logged in is a dealer
+if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) 
 {
     header('location:index.php');
 }
 
 include("db.php");
 
-$cusid = $_SESSION['userid']; //getting the customer id
+$cusid = $_SESSION['userid']; 
 $cusname = $_SESSION['username'];
 ?>
 
@@ -18,153 +17,20 @@ $cusname = $_SESSION['username'];
 <html>
 
 <head>
+<link rel="stylesheet" type="text/css" href="cus_purchased.css?v=<?php echo time(); ?>" />
     <title><?php echo $cusname."'s " ?> Purchases - VroomLife</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="icon" href="icon.ico">
-    <!--Google Fonts-->
+ 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <!--BOOTSTRAP CDN-->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 
-<style>
-.card {
-    margin-bottom: 10px;
-    margin-top: 15px;
-}
 
-.card-img-top {
-    min-height: 250px;
-    max-height: 250px;
-    object-fit: cover;
-}
-
-#listicon {
-    position: absolute;
-    left: 20px;
-    margin-top: 1px;
-    cursor: pointer;
-}
-
-
-#title {
-    font-family: 'Open Sans', sans-serif;
-    margin: auto;
-    margin-bottom: 0.5px;
-    text-align: center;
-    font-weight: 300;
-    font-size: 1.5rem;
-}
-
-#header #logout {
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-}
-
-#list {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    z-index: 20;
-    left: 0;
-    background-color: #C39BD3;
-    width: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: width 0.15s ease-in-out;
-}
-
-#list a {
-    font-weight: 350;
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    margin: 5px 0;
-    transition: color 0.15s ease-in-out;
-}
-
-#list #active {
-    cursor: default;
-    color: #76448A;
-}
-
-#list a:hover {
-    color: #76448A;
-    text-decoration: none;
-}
-
-#list #closelist {
-    cursor: pointer;
-    background-color: #76448A;
-    width: fit-content;
-    position: absolute;
-    top: 10px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    right: 10px;
-}
-
-.row {
-    align-items: flex-start;
-}
-
-li {
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-bottom: 1px;
-    max-width: 100%;
-}
-
-.card-subtitle {
-    color: #884EA0;
-}
-
-@media screen and (max-width:1000px) {
-
-    #carname {
-        font-size: 40px;
-    }
-
-}
-
-
-@media screen and (max-width:1200px) {
-    .row {
-        flex-direction: row;
-        min-width: 80%;
-    }
-
-    .col-sm-3 {
-        min-width: 50%;
-    }
-}
-
-@media screen and (max-width:769px) {
-    .row {
-        justify-content: center;
-    }
-
-    .col-sm-3 {
-        min-width: 80%;
-    }
-
-    #explore {
-        text-align: center;
-        padding: 20px 0;
-        border-bottom: 1px solid #C39BD3;
-    }
-}
-</style>
 
 <body>
 
@@ -211,7 +77,7 @@ li {
             </svg>
         </a>
 
-        <!--<h3 id="title">VroomLife</h3>-->
+       
 
         <img src="logow.png" height="50px" style="margin:auto">
 
