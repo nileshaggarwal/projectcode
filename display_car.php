@@ -32,27 +32,27 @@ $res_data = mysqli_query($con,$sql2);
 <html lang="en">
 
 <head>
-  <meta charset = "UTF-8">
-  <title> USER DETAILS</title>
+    <meta charset="UTF-8">
+    <title> USER DETAILS</title>
 
-  <link rel="stylesheet" href="display_car.css" >
+    <link rel="stylesheet" href="display_car.css">
 </head>
 
 <body>
-  <div class="display_main_info"> 
-<div class="display_main">
-<span>Car Dealership Website </span>  
-<br />
-<button >Contact Us </button>
-</div>
-</div>
+    <div class="display_main_info">
+        <div class="display_main">
+            <span>Car Dealership Website </span>
+            <br />
+            <button>Contact Us </button>
+        </div>
+    </div>
 
- <?php 
+    <?php 
 
 ?>
 
-<div class="main_display_card">
-      <?php
+    <div class="main_display_card">
+        <?php
       //loop till end of data
       while($row = mysqli_fetch_array($res_data)){  
 
@@ -63,60 +63,60 @@ $res_data = mysqli_query($con,$sql2);
       while($rows=$result->fetch_assoc())
       {
         ?>
-      
-      
-<div class="single_car_card">
-<div class="car_card_image">
-<?php  echo "<img src={$rows['img_url']} />" ?>
-      </div>
-      <div class="price">
-<span>$<?php echo $rows['price'] ?>
-      </div>
-      <div class="car_brand">
-      <span><?php echo $rows['brand'];?></span>
-    </div>
-    <div class="car_model">
-    <span><?php echo $rows['model'];?></span>
-  </div>
-  <br />
-  <div class="kms_engine_type">
-<div class="tra">
-  <div class="trans">
-<img src="./img/transmission.svg" alt="%" />
-      </div>
-  <div>
-<span><?php echo $rows['transmission']; ?> </span>
-      </div>
-      </div>
-      <div class="yearto">
-<div class="some_logo">
-<img src="./img/car.svg" alt="*" />
-      </div>
-<div >
-<span><?php echo $rows['yearto_invent']   ?> </span>
-      </div>
-
-      </div>
-
-      </div>
 
 
-      <div class="view_but">
- <a href="product.php?vehicleid=<?php echo $rows['vehicle_id'];?>">    
-<button>View Details </button></a>
-      </div>
+        <div class="single_car_card">
+            <div class="car_card_image">
+                <?php  echo "<img src={$rows['img_url']} />" ?>
+            </div>
+            <div class="price">
+                <span>$<?php echo $rows['price'] ?>
+            </div>
+            <div class="car_brand">
+                <span><?php echo $rows['brand'];?></span>
+            </div>
+            <div class="car_model">
+                <span><?php echo $rows['model'];?></span>
+            </div>
+            <br />
+            <div class="kms_engine_type">
+                <div class="tra">
+                    <div class="trans">
+                        <img src="./img/transmission.svg" alt="%" />
+                    </div>
+                    <div>
+                        <span><?php echo $rows['transmission']; ?> </span>
+                    </div>
+                </div>
+                <div class="yearto">
+                    <div class="some_logo">
+                        <img src="./img/car.svg" alt="*" />
+                    </div>
+                    <div>
+                        <span><?php echo $rows['yearto_invent']   ?> </span>
+                    </div>
 
-      
-     
+                </div>
 
-      </div>
-     
-      <?php
+            </div>
+
+
+            <div class="view_but">
+                <a href="product.php?vehicleid=<?php echo $rows['vehicle_id'];?>">
+                    <button>View Details </button></a>
+            </div>
+
+
+
+
+        </div>
+
+        <?php
       }
     }
     mysqli_close($con);
       ?>
-  
+
 
     </div>
     <ul class="pagination">
@@ -129,8 +129,7 @@ $res_data = mysqli_query($con,$sql2);
         </li>
         <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
     </ul>
-      
-    </body>
-    </html>
 
+</body>
 
+</html>
