@@ -23,7 +23,7 @@ $branch_result = mysqli_query($con, $branch_query);
 <html>
 
 <head>
-    <title><?php echo $dealername."'s " ?> Profile - Rustom</title>
+    <title><?php echo $dealername."'s " ?> Profile - VroomLife</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="icon.ico">

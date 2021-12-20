@@ -78,7 +78,7 @@ $cusname = $_SESSION['username'];
             </svg>
         </a>
 
-       
+
 
         <img src="./images/logow.png" height="50px" style="margin:auto">
 
@@ -136,12 +136,10 @@ unset($_SESSION['boughtnewcar']);
 {
 ?>
 
-        <div class="alert alert-primary" role="alert">
-            Hooray! You just rented a new car! Go to <a href="cus_rented.php">My Rents</a>!
-        </div>
+
 
         <?php 
-unset($_SESSION['rentedcar']);
+
 } ?>
 
         <h3 id="explore" style="font-weight:lighter">Explore</h3>
