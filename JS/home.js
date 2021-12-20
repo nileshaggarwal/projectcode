@@ -1,10 +1,8 @@
 function createreqobj() {
   var xhttp;
   if (window.XMLHttpRequest) {
-    // code for modern browsers
     xhttp = new XMLHttpRequest();
   } else {
-    // code for IE6, IE5
     xhttp = new ActiveXObject("Microsoft.XMLHTTP");
   }
 

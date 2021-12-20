@@ -76,10 +76,7 @@ if($result = $con->query($query))
             $row["link"]="resalecar.php?carid=".$row["carid"];
         }
 
-        else
-        {
-            $row["link"]="rentalcar.php?carid=".$row["carid"];
-        }
+     
 
 
         $featurequery = "select features from features where car_id=".$row["carid"]." limit 4";

@@ -3,14 +3,14 @@
 
 session_start();
 
-if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="customer")) //user not logged in or user logged in is a customer
+if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="customer")) 
 {
     header('location:index.php');
 }
 
 include("db.php");
 
-$dealerid = $_SESSION['userid']; //getting the dealer id
+$dealerid = $_SESSION['userid'];
 $dealername = $_SESSION['username'];
 
 if(isset($_POST["submit"]))
@@ -27,26 +27,26 @@ $m_id = $res1["manufacturerid"];
 $resaleprice = mysqli_real_escape_string($con, $_POST["resaleprice"]);
 $kmdriven = mysqli_real_escape_string($con, $_POST["kmdriven"]);
 $licenseplateno = mysqli_real_escape_string($con, $_POST["licenseplateno"]);
-//prepared statement
+
 $prepstat = "insert into car(name,cartype,mileage,color,status,fueltype,manufacturedate,licenseplateno,manufacturerid) values (?,'resale',?,?,'available',?,?,?,?)";
 
 if($stmt = mysqli_prepare($con, $prepstat))
 {
 
-//binding variables
+
 $name = mysqli_real_escape_string($con, $_POST["name"]);
 $color = mysqli_real_escape_string($con, $_POST["color"]);
 $mileage = mysqli_real_escape_string($con, $_POST["mileage"]);
 $m_date = mysqli_real_escape_string($con, $_POST["m_date"]);
 $fueltype = mysqli_real_escape_string($con, $_POST["fueltype"]);
 
-//echo $name." ".$color." ".$mileage." ".$m_date." ".$fueltype." ".$price." ".$m_id;
+
 
 mysqli_stmt_bind_param($stmt, "sssssss", $name,  $mileage, $color, $fueltype, $m_date,$licenseplateno, $m_id);
 
     if(mysqli_stmt_execute($stmt))
     {
-        //echo "Inserted successfully into cars table";
+        
 
         $query2 = "Select carid from car where name = '$name' order by uploadedtime desc limit 1";
         $ex2 = mysqli_query($con, $query2);
@@ -65,7 +65,7 @@ mysqli_stmt_bind_param($stmt, "sssssss", $name,  $mileage, $color, $fueltype, $m
         
             if(mysqli_query($con, $priceinsertquery))
             {
-            //echo "Inserted successfully into newcar table!";
+            
             
             $f1 = mysqli_real_escape_string($con, $_POST["f1"]);
             $f2 = mysqli_real_escape_string($con, $_POST["f2"]);
@@ -90,33 +90,33 @@ mysqli_stmt_bind_param($stmt, "sssssss", $name,  $mileage, $color, $fueltype, $m
                 $i++;
             }
 
-            //inserting image into table
+     
 
             if(isset($_FILES['carimage']))
             {
               $target_dir = "Images/";
-              $file_name = $_FILES['carimage']['name']; //original name of file in client's computer
-              $file_tmp = $_FILES['carimage']['tmp_name'];  //temp name stored in server until processing
+              $file_name = $_FILES['carimage']['name'];
+              $file_tmp = $_FILES['carimage']['tmp_name']; 
 
               $imageFileType = strtolower(pathinfo($file_name,PATHINFO_EXTENSION));
 
               if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") 
               {
-              //echo "Sorry only JPG, JPEG, PNG files are allowed.";
+            
               header("location:error.php");
               }
 
               else
               {
 
-              if(!is_dir($target_dir. $car_id ."/")) { //creating a new directory for that car
+              if(!is_dir($target_dir. $car_id ."/")) { 
                   mkdir($target_dir. $car_id ."/");
               }
 
-              $target_dir = $target_dir. $car_id."/"; //changing the target directory
+              $target_dir = $target_dir. $car_id."/";
 
               $newfilename="1.".$imageFileType;
-              move_uploaded_file($file_tmp, $target_dir.$newfilename); //uploading file to the given directory
+              move_uploaded_file($file_tmp, $target_dir.$newfilename); 
 
               $imgpath=$target_dir.$newfilename;
 
@@ -211,7 +211,7 @@ function back() {
                         <b>Basic Car Details</b>
 
                         <div class="item">
-                            <!--<input type="text" name="m_name" placeholder="Manufacturer Name"  required/>-->
+
 
                             Manufacturer Name
                             <select name="m_name" required>

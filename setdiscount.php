@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="customer")) //user not logged in or user logged in is a customer
+if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="customer")) 
 {
     header('location:index.php');
 }
@@ -13,7 +13,7 @@ $cartype=$_REQUEST["cartype"];
 $discount=$_POST["discount"];
 $action=$_REQUEST["action"];
 
-//echo $carid.",".$cartype.",".$discount;
+
 
 
 if($action==="add")

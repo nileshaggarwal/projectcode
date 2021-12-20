@@ -81,7 +81,7 @@ if($row["images"]===null)
     $row["images"]="dummy.png";
 }
 
-//setting link 
+ 
 
 if($row["cartype"]==='new')
 {
@@ -94,7 +94,7 @@ else if($row["cartype"]==='resale')
 }
 
 
-//setting color
+
 if($row["status"]==="sold out")
 {
     $statuscolor="#E74C3C";

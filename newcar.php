@@ -2,10 +2,10 @@
 
 session_start();
 
-// if(!isset($_SESSION['logged_in'])) //user not logged in
-// {
-//     header('location:index.php');
-// }
+if(!isset($_SESSION['logged_in'])) 
+{
+    header('location:index.php');
+}
 
 include("db.php");
 
@@ -13,7 +13,7 @@ $carid = $_REQUEST["carid"];
 $userid = $_SESSION['userid'];
 $usertype =  $_SESSION['usertype'];
 
-//first query to select all car and its dealer details
+
 $query1 = "select Name,Dname,Mname,status,manufacturer.location as mloc,dealer.phoneno as dph,d_email,dealer.website as dweb,mileage,color,status,
 fueltype,Price,discount,customerid from car inner join newcar inner join manufacturer inner join owns inner join dealer where car.manufacturerid=manufacturer.manufacturerid and 
 owns.carid=car.carid and owns.dealerid=dealer.dealerID and car.carid=newcar.newcarid and car.carid=$carid";
@@ -21,12 +21,11 @@ owns.carid=car.carid and owns.dealerid=dealer.dealerID and car.carid=newcar.newc
 $result1 = mysqli_query($con,$query1);
 $firstquery = mysqli_fetch_assoc($result1);
 
-//second query to get the features of the car
 $query2 = "select features from features where car_id=$carid";
 
 $result2 = mysqli_query($con,$query2);
 
-//third query to get the images of the car
+
 $query3 = "select images from images where carid=$carid";
 
 $result3 = mysqli_query($con,$query3);
@@ -45,9 +44,9 @@ $result3 = mysqli_query($con,$query3);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="icon" href="icon.ico">
-    <!--Google Fonts-->
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <!--BOOTSTRAP CDN-->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -443,7 +442,7 @@ function showimage(event) {
 
 
         $('.tile')
-            // tile mouse actions
+
             .on('mouseover', function() {
                 $(this).children('.photo').css({
                     'transform': 'scale(' + $(this).attr('data-scale') + ')'

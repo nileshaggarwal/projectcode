@@ -2,7 +2,7 @@
 session_start();
 include("db.php");
 
-$cusid = $_SESSION['userid']; //getting the customer id
+$cusid = $_SESSION['userid']; 
 $cusname = $_SESSION['username'];
 
 $c_name = mysqli_real_escape_string($con, $_POST['name']);
@@ -11,7 +11,7 @@ $c_phoneno =  mysqli_real_escape_string($con, $_POST['phone']);
 $c_address =  mysqli_real_escape_string($con, $_POST['address']);
 $c_drivingLicense =  mysqli_real_escape_string($con, $_POST['dlno']);
 
-//Fetching from customer table
+
 $query = "SELECT * FROM customer WHERE customerID = $cusid";
 $result = mysqli_query($con, $query);
 $row = mysqli_fetch_assoc($result);
@@ -21,10 +21,10 @@ if($row['CustomerName'] != $c_name || $row['DOB'] != $c_dob || $row['PhoneNo'] !
     $customer_update= "UPDATE CUSTOMER SET CustomerName=?,  DOB=?, PhoneNo=?, Address=?, DrivingLicense=? WHERE customerid = $cusid";
     if($stmt= mysqli_prepare($con, $customer_update) )
     {
-        //Bind the variables to prepared statements as parameters
+        
         mysqli_stmt_bind_param($stmt, "sssss", $c_name, $c_dob, $c_phoneno, $c_address, $c_drivingLicense);
 
-        //Execute the statement
+      
         if(mysqli_stmt_execute($stmt))
         {
             $_SESSION['username'] = $c_name;

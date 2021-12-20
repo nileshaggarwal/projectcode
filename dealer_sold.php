@@ -2,14 +2,13 @@
 
 session_start();
 
-if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="customer")) 
-{
+if (!isset($_SESSION['logged_in']) || (isset($_SESSION['logged_in']) && $_SESSION['usertype'] === "customer")) {
     header('location:index.php');
 }
 
 include("db.php");
 
-$dealerid = $_SESSION['userid']; 
+$dealerid = $_SESSION['userid'];
 $dealername = $_SESSION['username'];
 
 ?>
@@ -18,7 +17,7 @@ $dealername = $_SESSION['username'];
 <html>
 
 <head>
-    <title><?php echo $dealername."'s " ?> Sales - VroomLife</title>
+    <title><?php echo $dealername . "'s " ?> Sales - VroomLife</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="icon" href="icon.ico">
@@ -27,7 +26,7 @@ $dealername = $_SESSION['username'];
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./css/dealersold.css?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="./css/dealersold.css?v=<?php echo time(); ?>" />
 </head>
 
 <style>
@@ -96,29 +95,27 @@ $dealername = $_SESSION['username'];
 
         <div class="row">
 
-            <?php 
+            <?php
 
-$soldcarsquery = "
+            $soldcarsquery = "
 select customername,car.carid as carid,name,DATE_FORMAT(paymentdate,'%d %M %Y') as paymentdate from owns 
 inner join customer inner join car inner join newcar where car.carid=newcar.newcarid and dealerid = $dealerid and 
 paymentstatus='verified' and customer.customerid = newcar.customerid and car.carid=owns.carid order by paymentdate desc";
-$ex = mysqli_query($con,$soldcarsquery);
+            $ex = mysqli_query($con, $soldcarsquery);
 
-if(mysqli_num_rows($ex)===0)
-{
-?>
+            if (mysqli_num_rows($ex) === 0) {
+            ?>
 
             <div
                 style="width:100%;border:1px solid #C39BD3;margin-top:15px;padding:10px 0;text-align:center;font-size:1.2rem;font-weight:lighter;color:black">
                 No new cars sold yet!</div>
 
             <?php
-}
+            }
 
-while($row=mysqli_fetch_assoc($ex))
-{
+            while ($row = mysqli_fetch_assoc($ex)) {
 
-?>
+            ?>
 
             <div class="col-sm-3">
 
@@ -126,17 +123,17 @@ while($row=mysqli_fetch_assoc($ex))
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row["name"] ?></h5>
                         <h6 class="card-subtitle mb-2">Sold on
-                            <?php echo $row["paymentdate"]." to ".$row["customername"]?></h6>
+                            <?php echo $row["paymentdate"] . " to " . $row["customername"] ?></h6>
                         <hr>
-                        <a href="<?php echo "newcar.php?carid=".$row["carid"]?>" class="card-link">Car Details</a>
+                        <a href="<?php echo "newcar.php?carid=" . $row["carid"] ?>" class="card-link">Car Details</a>
                     </div>
                 </div>
             </div>
 
-            <?php 
+            <?php
 
-}
-?>
+            }
+            ?>
 
         </div>
 
@@ -146,29 +143,27 @@ while($row=mysqli_fetch_assoc($ex))
 
 
             <?php
-$soldresalecarsquery = "
+            $soldresalecarsquery = "
 select customername,car.carid as carid,name,DATE_FORMAT(paymentdate,'%d %M %Y') as paymentdate from owns 
 inner join customer inner join car inner join preownedcar where car.carid=preownedcar.preownedcarid and dealerid = $dealerid and 
 paymentstatus='verified' and customer.customerid = preownedcar.customerid and car.carid=owns.carid order by paymentdate desc";
 
-$ex2 = mysqli_query($con,$soldresalecarsquery);
+            $ex2 = mysqli_query($con, $soldresalecarsquery);
 
-if(mysqli_num_rows($ex2)===0)
-{
-?>
+            if (mysqli_num_rows($ex2) === 0) {
+            ?>
 
 
             <div
                 style="width:100%;border:1px solid #C39BD3;margin-top:15px;padding:10px 0;text-align:center;font-size:1.2rem;font-weight:300;color:black">
                 No resale cars sold yet!</div>
 
-            <?php    
-}
+            <?php
+            }
 
-while($row=mysqli_fetch_assoc($ex2))
-{
+            while ($row = mysqli_fetch_assoc($ex2)) {
 
-?>
+            ?>
 
             <div class="col-sm-3">
 
@@ -176,9 +171,9 @@ while($row=mysqli_fetch_assoc($ex2))
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row["name"] ?></h5>
                         <h6 class="card-subtitle mb-2">Sold on
-                            <?php echo $row["paymentdate"]." to ".$row["customername"]?></h6>
+                            <?php echo $row["paymentdate"] . " to " . $row["customername"] ?></h6>
                         <hr>
-                        <a href="<?php echo "resalecar.php?carid=".$row["carid"]?>" class="card-link">Car Details</a>
+                        <a href="<?php echo "resalecar.php?carid=" . $row["carid"] ?>" class="card-link">Car Details</a>
                     </div>
                 </div>
             </div>

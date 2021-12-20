@@ -2,7 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) //user not logged in or user logged in is a dealer
+if(!isset($_SESSION['logged_in'])||(isset($_SESSION['logged_in'])&&$_SESSION['usertype']==="dealer")) 
 {
     header('location:index.php');
 }
@@ -69,8 +69,4 @@ else
     }
 
 }
-
-
-
 ?>
-
